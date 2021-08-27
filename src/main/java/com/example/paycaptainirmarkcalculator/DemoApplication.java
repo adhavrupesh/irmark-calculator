@@ -24,7 +24,7 @@ public class DemoApplication {
 
 	@ResponseBody
 	@PostMapping(value = "/ex/foos", consumes = MediaType.APPLICATION_XML_VALUE)//
-	public List<String> getFoosBySimplePath(@RequestBody GovTalkMessage xmldata) throws Exception {
+	public String  getFoosBySimplePath(@RequestBody GovTalkMessage xmldata) throws Exception {
 
 		//System.out.println("new xmldata = "+xmldata);
 
@@ -67,10 +67,12 @@ public class DemoApplication {
 		IRMarkCalculator mc = new IRMarkCalculator();
 		String d = mc.createMark(targetStream);
 		System.out.println("output : "+d);
+
 		List<String> tosend = new ArrayList<String>();
 		tosend.add(xmlContent);
 		tosend.add(d);
-		return tosend;
+
+		return d;
 	}
 
 }
