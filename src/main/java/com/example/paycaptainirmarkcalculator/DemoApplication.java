@@ -77,6 +77,9 @@ public class DemoApplication {
 		if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
 			xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
 		}
+		if(xmlContent.contains("\n")){
+			xmlContent = xmlContent.replace("\n", "");
+		}
 
 		return xmlContent;
 	}
