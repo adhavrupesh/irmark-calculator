@@ -13,6 +13,4 @@ public class GovTalkMessage {
     public GovTalkDetails GovTalkDetails;
     @XmlElement
     public Body Body;
-
-
 }
