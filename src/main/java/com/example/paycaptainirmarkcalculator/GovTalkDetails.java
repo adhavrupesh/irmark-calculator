@@ -8,6 +8,6 @@ public class GovTalkDetails {
     @XmlElement
     public TargetDetails TargetDetails;
     @XmlElement
-    ChannelRouting ChannelRouting;
+    public ChannelRouting ChannelRouting;
 
 }

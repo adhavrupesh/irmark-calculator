@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class ChannelRouting {
     @XmlElement
-    Channel Channel;
+    public Channel Channel;
     @XmlElement
     public String Timestamp;
 

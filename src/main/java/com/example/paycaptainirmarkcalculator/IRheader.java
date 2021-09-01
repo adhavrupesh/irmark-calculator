@@ -10,7 +10,7 @@ public class IRheader {
     @XmlElement
     public String DefaultCurrency;
     @XmlElement
-    IRmark IRmark;
+    public IRmark IRmark;
     @XmlElement
     public String Sender;
 
