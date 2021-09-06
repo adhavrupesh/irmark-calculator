@@ -25,7 +25,7 @@ public class DemoApplication {
 	}
 
 	@ResponseBody
-	@PostMapping(value = "/ex/foos", consumes = MediaType.APPLICATION_XML_VALUE)//
+	@PostMapping(value = "/calculate", consumes = MediaType.APPLICATION_XML_VALUE)//
 	public String  getFoosBySimplePath(@RequestBody GovTalkMessage xmldata) throws Exception {
 
 		//System.out.println("new xmldata = "+xmldata);
