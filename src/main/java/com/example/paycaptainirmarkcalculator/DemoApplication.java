@@ -1,5 +1,6 @@
 package com.example.paycaptainirmarkcalculator;
 
+import com.example.paycaptainirmarkcalculator.fps.GovTalkMessage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.MediaType;
@@ -13,8 +14,6 @@ import javax.xml.bind.Marshaller;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @SpringBootApplication
@@ -69,10 +68,6 @@ public class DemoApplication {
 		IRMarkCalculator mc = new IRMarkCalculator();
 		String base64 = mc.createMark(targetStream);
 		System.out.println("output base64 : "+base64);
-
-		//List<String> tosend = new ArrayList<String>();
-		//tosend.add(xmlContent);
-		//tosend.add(d);
 
 		if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
 			xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
