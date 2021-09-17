@@ -2,7 +2,7 @@ package com.example.paycaptainirmarkcalculator.fps;
 
 import javax.xml.bind.annotation.XmlElement;
 
-public class TargetDetails {
-    @XmlElement
-    public String Organisation;
+public class Contains {
+ @XmlElement
+ public Reference ReferenceObject;
 }

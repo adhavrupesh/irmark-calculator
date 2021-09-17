@@ -11,5 +11,7 @@ public class Name {
     public List<String> Fore;
     @XmlElement
     public String Sur;
+    @XmlElement
+    public String Initials;
 
 }

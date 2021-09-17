@@ -8,5 +8,9 @@ public class Address {
     public List<String> Line;
     @XmlElement
     public String UKPostcode;
+    @XmlElement
+    public String PostCode;
+    @XmlElement
+    public String Country;
 
 }

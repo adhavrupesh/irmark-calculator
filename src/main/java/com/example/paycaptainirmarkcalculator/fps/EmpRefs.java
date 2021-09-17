@@ -11,5 +11,6 @@ public class EmpRefs {
     public String AORef;
     @XmlElement
     public String COTAXRef;
-
+    @XmlElement
+    public String SAUTR;
 }

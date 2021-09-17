@@ -14,7 +14,13 @@ public class Payment {
     @XmlElement
     public String MonthNo;
     @XmlElement
+    public String WeekNo;
+    @XmlElement
     public String PeriodsCovered;
+    @XmlElement
+    public String AggregatedEarnings;
+    @XmlElement
+    public String PmtAfterLeaving;
     @XmlElement
     public String HoursWorked;
     @XmlElement
@@ -24,11 +30,21 @@ public class Payment {
     @XmlElement
     public String NonTaxOrNICPmt;
     @XmlElement
+    public String DednsFromNetPay;
+    @XmlElement
     public String PayAfterStatDedns;
+    @XmlElement
+    public String BenefitsTaxedViaPayroll;
     @XmlElement
     public String Class1ANICsYTD;
     @XmlElement
     public com.example.paycaptainirmarkcalculator.fps.Benefits Benefits;
+    @XmlElement
+    public String EmpeePenContribnsPaid;
+    @XmlElement
+    public String ItemsSubjectToClass1NIC;
+    @XmlElement
+    public String EmpeePenContribnsNotPaid;
     @XmlElement
     public StudentLoanRecovered StudentLoanRecovered;
     @XmlElement
@@ -36,6 +52,22 @@ public class Payment {
     @XmlElement
     public String TaxDeductedOrRefunded;
     @XmlElement
+    public String OnStrike;
+    @XmlElement
+    public String UnpaidAbsence;
+    @XmlElement
+    public String SMPYTD;
+    @XmlElement
+    public String SPPYTD;
+    @XmlElement
+    public String SAPYTD;
+    @XmlElement
+    public String ShPPYTD;
+    @XmlElement
     public String SPBPYTD;
+    @XmlElement
+    public TrivialCommutationPayment TrivialCommutationPayment;
+    @XmlElement
+    public FlexibleDrawdown FlexibleDrawdown;
 
 }

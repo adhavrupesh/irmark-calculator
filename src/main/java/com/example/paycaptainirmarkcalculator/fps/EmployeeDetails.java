@@ -13,5 +13,9 @@ public class EmployeeDetails {
     public String BirthDate;
     @XmlElement
     public String Gender;
+    @XmlElement
+    public String PassportNumber;
+    @XmlElement
+    public PartnerDetails PartnerDetails;
 
 }

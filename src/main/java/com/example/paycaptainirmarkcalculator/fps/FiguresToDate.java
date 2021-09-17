@@ -8,6 +8,14 @@ public class FiguresToDate {
     @XmlElement
     public String TotalTax;
     @XmlElement
+    public String StudentLoansTD;
+    @XmlElement
     public String PostgradLoansTD;
+    @XmlElement
+    public String BenefitsTaxedViaPayrollYTD;
+    @XmlElement
+    public String EmpeePenContribnsPaidYTD;
+    @XmlElement
+    public String EmpeePenContribnsNotPaidYTD;
 
 }

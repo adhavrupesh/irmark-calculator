@@ -7,4 +7,14 @@ public class DeMinimisStateAid {
   public String Agri;
   @XmlElement
   public Aid Aid;
+
+  @XmlElement
+  public String FisheriesAqua;
+  @XmlElement
+  public String RoadTrans;
+  @XmlElement
+  public String Indust;
+  @XmlElement
+  public String NA;
+
 }

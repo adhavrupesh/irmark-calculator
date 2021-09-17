@@ -8,7 +8,13 @@ public class IRheader {
     @XmlElement
     public String PeriodEnd;
     @XmlElement
+    public Principal Principal;
+    @XmlElement
+    public Agent Agent;
+    @XmlElement
     public String DefaultCurrency;
+    @XmlElement
+    public Manifest Manifest;
     @XmlElement
     public IRmark IRmark;
     @XmlElement

@@ -14,6 +14,8 @@ public class Car {
     @XmlElement
     public String Fuel;
     @XmlElement
+    public String ID;
+    @XmlElement
     public String Amendment;
     @XmlElement
     public String Price;
@@ -21,5 +23,9 @@ public class Car {
     public String AvailFrom;
     @XmlElement
     public String CashEquiv;
+    @XmlElement
+    public String AvailTo;
+    @XmlElement
+    public FreeFuel FreeFuel;
 
 }

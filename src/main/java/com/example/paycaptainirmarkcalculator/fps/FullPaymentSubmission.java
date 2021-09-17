@@ -9,5 +9,7 @@ public class FullPaymentSubmission {
     public String RelatedTaxYear;
     @XmlElement
     public Employee Employee;
+    @XmlElement
+    public FinalSubmission FinalSubmission;
 
 }
