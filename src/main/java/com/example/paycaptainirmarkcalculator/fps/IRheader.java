@@ -7,14 +7,14 @@ public class IRheader {
     public com.example.paycaptainirmarkcalculator.fps.Keys Keys;
     @XmlElement
     public String PeriodEnd;
-    @XmlElement
-    public Principal Principal;
-    @XmlElement
-    public Agent Agent;
+    //@XmlElement
+    //public Principal Principal;
+    //@XmlElement
+    //public Agent Agent;
     @XmlElement
     public String DefaultCurrency;
-    @XmlElement
-    public Manifest Manifest;
+    //@XmlElement
+    //public Manifest Manifest;
     @XmlElement
     public IRmark IRmark;
     @XmlElement
