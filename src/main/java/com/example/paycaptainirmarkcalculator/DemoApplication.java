@@ -34,6 +34,7 @@ public class DemoApplication {
 
 		if(endDateMonth.length() == 10 && endDateMonth.contains("-")){
 			endDateMonth = endDateMonth.split("-")[1];
+			endDateMonth = endDateMonth.replaceFirst("^0+(?!$)", "");
 		}
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
