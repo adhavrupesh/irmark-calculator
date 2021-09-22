@@ -29,6 +29,13 @@ public class DemoApplication {
 
 		//System.out.println("new xmldata = "+xmldata);
 
+		String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
+		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
+
+		if(endDateMonth.length() == 10 && endDateMonth.contains("-")){
+			endDateMonth = endDateMonth.split("-")[1];
+		}
+
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
 
 		//Create Marshaller
@@ -52,7 +59,8 @@ public class DemoApplication {
 			xmlContent = xmlContent.replace("</MessageDetailsClass>", "</Class>");
 		}
 		if(xmlContent.contains("<IRenvelope>")){
-			xmlContent = xmlContent.replace("<IRenvelope>", "<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/20-21/1\">");
+			xmlContent = xmlContent.replace("<IRenvelope>",
+					"<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/"+taxYear+"/"+endDateMonth+"\">");
 		}
 		if(xmlContent.contains(" standalone=\"yes\"")){
 			xmlContent = xmlContent.replace(" standalone=\"yes\"", "");
