@@ -32,10 +32,9 @@ public class DemoApplication {
 		System.out.println("####headers = "+headers);
 		System.out.println("####monthnumber = "+ headers.get("monthnumber").get(0));
 
-		String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
+		//String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
-
-		endDateMonth = headers.get("monthnumber").get(0);
+		String endDateMonth = "6"; //headers.get("monthnumber").get(0);
 		//if(endDateMonth.length() == 10 && endDateMonth.contains("-")){
 		//	endDateMonth = endDateMonth.split("-")[1];
 		//	endDateMonth = endDateMonth.replaceFirst("^0+(?!$)", "");
