@@ -30,15 +30,16 @@ public class DemoApplication {
 	public String  getFoosBySimplePath(@RequestHeader HttpHeaders headers, @RequestBody GovTalkMessage xmldata) throws Exception {
 
 		System.out.println("####headers = "+headers);
-		System.out.println("####monthnumber = "+headers.get("monthnumber"));
+		System.out.println("####monthnumber = "+ headers.get("monthnumber").get(0));
 
 		String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 
-		if(endDateMonth.length() == 10 && endDateMonth.contains("-")){
-			endDateMonth = endDateMonth.split("-")[1];
-			endDateMonth = endDateMonth.replaceFirst("^0+(?!$)", "");
-		}
+		endDateMonth = headers.get("monthnumber").get(0);
+		//if(endDateMonth.length() == 10 && endDateMonth.contains("-")){
+		//	endDateMonth = endDateMonth.split("-")[1];
+		//	endDateMonth = endDateMonth.replaceFirst("^0+(?!$)", "");
+		//}
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
 
@@ -60,11 +61,11 @@ public class DemoApplication {
 
 		if(xmlContent.contains("<MessageDetailsClass>")) {
 			xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
-			xmlContent = xmlContent.replace("</MessageDetailsClass>", "</Class>");
+			//xmlContent = xmlContent.replace("</MessageDetailsClass>", "</Class>");
 		}
 		if(xmlContent.contains("<IRenvelope>")){
 			xmlContent = xmlContent.replace("<IRenvelope>",
-					"<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/"+taxYear+"/"+headers.get("monthnumber")+"\">");
+					"<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/"+taxYear+"/"+endDateMonth+"\">");
 		}
 		if(xmlContent.contains(" standalone=\"yes\"")){
 			xmlContent = xmlContent.replace(" standalone=\"yes\"", "");
