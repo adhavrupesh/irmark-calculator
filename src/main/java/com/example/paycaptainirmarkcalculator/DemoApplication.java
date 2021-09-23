@@ -30,6 +30,7 @@ public class DemoApplication {
 	public String  getFoosBySimplePath(@RequestHeader HttpHeaders headers, @RequestBody GovTalkMessage xmldata) throws Exception {
 
 		System.out.println("####headers = "+headers);
+		System.out.println("####monthnumber = "+headers.get("monthnumber"));
 
 		String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
@@ -63,7 +64,7 @@ public class DemoApplication {
 		}
 		if(xmlContent.contains("<IRenvelope>")){
 			xmlContent = xmlContent.replace("<IRenvelope>",
-					"<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/"+taxYear+"/"+endDateMonth+"\">");
+					"<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/"+taxYear+"/"+headers.get("monthnumber")+"\">");
 		}
 		if(xmlContent.contains(" standalone=\"yes\"")){
 			xmlContent = xmlContent.replace(" standalone=\"yes\"", "");
