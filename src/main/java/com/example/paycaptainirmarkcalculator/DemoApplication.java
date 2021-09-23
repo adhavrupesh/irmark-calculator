@@ -3,10 +3,12 @@ package com.example.paycaptainirmarkcalculator;
 import com.example.paycaptainirmarkcalculator.fps.GovTalkMessage;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.xml.bind.JAXBContext;
@@ -25,9 +27,9 @@ public class DemoApplication {
 
 	@ResponseBody
 	@PostMapping(value = "/calculate", consumes = MediaType.APPLICATION_XML_VALUE)//
-	public String  getFoosBySimplePath(@RequestBody GovTalkMessage xmldata) throws Exception {
+	public String  getFoosBySimplePath(@RequestHeader HttpHeaders headers, @RequestBody GovTalkMessage xmldata) throws Exception {
 
-		//System.out.println("new xmldata = "+xmldata);
+		System.out.println("####headers = "+headers);
 
 		String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
