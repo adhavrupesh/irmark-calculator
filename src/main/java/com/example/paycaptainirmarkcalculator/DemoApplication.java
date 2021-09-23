@@ -60,7 +60,7 @@ public class DemoApplication {
 
 		if(xmlContent.contains("<MessageDetailsClass>")) {
 			xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
-			//xmlContent = xmlContent.replace("</MessageDetailsClass>", "</Class>");
+			xmlContent = xmlContent.replace("</MessageDetailsClass>", "</Class>");
 		}
 		if(xmlContent.contains("<IRenvelope>")){
 			xmlContent = xmlContent.replace("<IRenvelope>",
