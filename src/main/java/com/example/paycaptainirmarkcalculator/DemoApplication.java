@@ -34,7 +34,7 @@ public class DemoApplication {
 
 		//String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
-		String endDateMonth = "6"; //headers.get("monthnumber").get(0);
+		String endDateMonth = headers.get("monthnumber").get(0);
 		//if(endDateMonth.length() == 10 && endDateMonth.contains("-")){
 		//	endDateMonth = endDateMonth.split("-")[1];
 		//	endDateMonth = endDateMonth.replaceFirst("^0+(?!$)", "");
