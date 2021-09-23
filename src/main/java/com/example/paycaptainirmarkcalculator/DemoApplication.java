@@ -41,22 +41,12 @@ public class DemoApplication {
 		//}
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
-
-		//Create Marshaller
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-		//Required formatting??
 		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-		//Print XML String to Console
 		StringWriter sw = new StringWriter();
-
-		//Write XML to StringWriter
 		jaxbMarshaller.marshal(xmldata, sw);
 
-		//Verify XML Content
 		String xmlContent = sw.toString();
-		//System.out.println( "before replace xmlContent : "+xmlContent );
 
 		if(xmlContent.contains("<MessageDetailsClass>")) {
 			xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
@@ -72,8 +62,6 @@ public class DemoApplication {
 		if(xmlContent.contains("\n")){
 			xmlContent = xmlContent.replace("\n", "");
 		}
-		System.out.println( "after replace xmlContent");
-		System.out.println(xmlContent);
 
 		InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
 
