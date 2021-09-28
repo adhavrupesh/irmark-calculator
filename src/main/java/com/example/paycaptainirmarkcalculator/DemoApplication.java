@@ -27,18 +27,14 @@ public class DemoApplication {
 
 	@ResponseBody
 	@PostMapping(value = "/calculate", consumes = MediaType.APPLICATION_XML_VALUE)//
-	public String  getFoosBySimplePath(@RequestHeader HttpHeaders headers, @RequestBody GovTalkMessage xmldata) throws Exception {
+	public String  getFoosBySimplePath(@RequestHeader HttpHeaders headers,
+									   @RequestBody GovTalkMessage xmldata) throws Exception {
 
-		System.out.println("####headers = "+headers);
 		System.out.println("####monthnumber = "+ headers.get("monthnumber").get(0));
 
 		//String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
-		//if(endDateMonth.length() == 10 && endDateMonth.contains("-")){
-		//	endDateMonth = endDateMonth.split("-")[1];
-		//	endDateMonth = endDateMonth.replaceFirst("^0+(?!$)", "");
-		//}
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -55,6 +51,56 @@ public class DemoApplication {
 		if(xmlContent.contains("<IRenvelope>")){
 			xmlContent = xmlContent.replace("<IRenvelope>",
 					"<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/"+taxYear+"/"+endDateMonth+"\">");
+		}
+		if(xmlContent.contains(" standalone=\"yes\"")){
+			xmlContent = xmlContent.replace(" standalone=\"yes\"", "");
+		}
+		if(xmlContent.contains("\n")){
+			xmlContent = xmlContent.replace("\n", "");
+		}
+
+		InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
+
+		IRMarkCalculator mc = new IRMarkCalculator();
+		String base64 = mc.createMark(targetStream);
+		System.out.println("output base64 : "+base64);
+
+		if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
+			xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
+		}
+		if(xmlContent.contains("\n")){
+			xmlContent = xmlContent.replace("\n", "");
+		}
+
+		return xmlContent;
+	}
+
+	@ResponseBody
+	@PostMapping(value = "/calculateeps", consumes = MediaType.APPLICATION_XML_VALUE)//
+	public String  sendepsxmlwithirmark(@RequestHeader HttpHeaders headers,
+										 @RequestBody com.example.paycaptainirmarkcalculator.eps.GovTalkMessage xmldata) throws Exception {
+
+		System.out.println("####monthnumber = "+ headers.get("monthnumber").get(0));
+
+		//String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
+		String taxYear = xmldata.Body.IRenvelope.EmployerPaymentSummary.RelatedTaxYear;
+		String endDateMonth = headers.get("monthnumber").get(0);
+
+		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
+		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		StringWriter sw = new StringWriter();
+		jaxbMarshaller.marshal(xmldata, sw);
+
+		String xmlContent = sw.toString();
+
+		if(xmlContent.contains("<MessageDetailsClass>")) {
+			xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
+			xmlContent = xmlContent.replace("</MessageDetailsClass>", "</Class>");
+		}
+		if(xmlContent.contains("<IRenvelope>")){
+			xmlContent = xmlContent.replace("<IRenvelope>",
+					"<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/EmployerPaymentSummary/"+taxYear+"/"+endDateMonth+"\">");
 		}
 		if(xmlContent.contains(" standalone=\"yes\"")){
 			xmlContent = xmlContent.replace(" standalone=\"yes\"", "");
