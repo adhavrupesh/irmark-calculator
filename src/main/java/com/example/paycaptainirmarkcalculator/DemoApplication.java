@@ -86,7 +86,7 @@ public class DemoApplication {
 		String taxYear = xmldata.Body.IRenvelope.EmployerPaymentSummary.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
 
-		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
+		JAXBContext jaxbContext = JAXBContext.newInstance(com.example.paycaptainirmarkcalculator.eps.GovTalkMessage.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		StringWriter sw = new StringWriter();
