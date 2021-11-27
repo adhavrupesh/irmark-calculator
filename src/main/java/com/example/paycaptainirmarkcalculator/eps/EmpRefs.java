@@ -9,5 +9,7 @@ public class EmpRefs {
     public String PayeRef;
     @XmlElement
     public String AORef;
+    @XmlElement
+    public String SAUTR;
 
 }
