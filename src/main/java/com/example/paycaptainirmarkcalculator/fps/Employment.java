@@ -29,5 +29,19 @@ public class Employment {
     public com.example.paycaptainirmarkcalculator.fps.Payment Payment;
     @XmlElement
     public com.example.paycaptainirmarkcalculator.fps.NIlettersAndValues NIlettersAndValues;
+    @XmlElement
+    public com.example.paycaptainirmarkcalculator.fps.NIlettersAndValues NIlettersAndValuesB;
+    @XmlElement
+    public com.example.paycaptainirmarkcalculator.fps.NIlettersAndValues NIlettersAndValuesC;
+    @XmlElement
+    public com.example.paycaptainirmarkcalculator.fps.NIlettersAndValues NIlettersAndValuesH;
+    @XmlElement
+    public com.example.paycaptainirmarkcalculator.fps.NIlettersAndValues NIlettersAndValuesJ;
+    @XmlElement
+    public com.example.paycaptainirmarkcalculator.fps.NIlettersAndValues NIlettersAndValuesM;
+    @XmlElement
+    public com.example.paycaptainirmarkcalculator.fps.NIlettersAndValues NIlettersAndValuesX;
+    @XmlElement
+    public com.example.paycaptainirmarkcalculator.fps.NIlettersAndValues NIlettersAndValuesZ;
 
 }

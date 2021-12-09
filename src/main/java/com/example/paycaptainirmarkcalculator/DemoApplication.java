@@ -59,6 +59,29 @@ public class DemoApplication {
 			xmlContent = xmlContent.replace("\n", "");
 		}
 
+		//added on 09 December 2021
+		if(xmlContent.contains("NIlettersAndValuesB")){
+			xmlContent = xmlContent.replace("NIlettersAndValuesB", "NIlettersAndValues");
+		}
+		if(xmlContent.contains("NIlettersAndValuesC")){
+			xmlContent = xmlContent.replace("NIlettersAndValuesC", "NIlettersAndValues");
+		}
+		if(xmlContent.contains("NIlettersAndValuesH")){
+			xmlContent = xmlContent.replace("NIlettersAndValuesH", "NIlettersAndValues");
+		}
+		if(xmlContent.contains("NIlettersAndValuesJ")){
+			xmlContent = xmlContent.replace("NIlettersAndValuesJ", "NIlettersAndValues");
+		}
+		if(xmlContent.contains("NIlettersAndValuesM")){
+			xmlContent = xmlContent.replace("NIlettersAndValuesM", "NIlettersAndValues");
+		}
+		if(xmlContent.contains("NIlettersAndValuesX")){
+			xmlContent = xmlContent.replace("NIlettersAndValuesX", "NIlettersAndValues");
+		}
+		if(xmlContent.contains("NIlettersAndValuesZ")){
+			xmlContent = xmlContent.replace("NIlettersAndValuesZ", "NIlettersAndValues");
+		}
+
 		InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
 
 		IRMarkCalculator mc = new IRMarkCalculator();
