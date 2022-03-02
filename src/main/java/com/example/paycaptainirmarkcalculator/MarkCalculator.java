@@ -20,13 +20,13 @@ public abstract class MarkCalculator
 
 
     public String createMark(InputStream in) throws Exception {
-        System.out.println("### createMark " + in);
+        //System.out.println("### createMark " + in);
         return toBase64(getMarkBytes(in));
     }
 
 
     protected byte[] getMarkBytes(InputStream in) throws Exception {
-        System.out.println("### getMarkBytes " + in);
+        //System.out.println("### getMarkBytes " + in);
 
         Init.init();
 
@@ -52,7 +52,7 @@ public abstract class MarkCalculator
 
 
     public static String toBase64(byte[] irMarkBytes){
-        System.out.println("### toBase64 " + irMarkBytes);
+        //System.out.println("### toBase64 " + irMarkBytes);
         return new String(Base64.encode(irMarkBytes));
     }
 
