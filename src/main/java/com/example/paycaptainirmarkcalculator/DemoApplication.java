@@ -30,7 +30,7 @@ public class DemoApplication {
 	public String  getFoosBySimplePath(@RequestHeader HttpHeaders headers,
 									   @RequestBody GovTalkMessage xmldata) throws Exception {
 
-		System.out.println("####monthnumber = "+ headers.get("monthnumber").get(0));
+		//System.out.println("####monthnumber = "+ headers.get("monthnumber").get(0));
 
 		//String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
@@ -86,7 +86,7 @@ public class DemoApplication {
 
 		IRMarkCalculator mc = new IRMarkCalculator();
 		String base64 = mc.createMark(targetStream);
-		System.out.println("output base64 : "+base64);
+		//System.out.println("output base64 : "+base64);
 
 		if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
 			xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
@@ -103,7 +103,7 @@ public class DemoApplication {
 	public String  sendepsxmlwithirmark(@RequestHeader HttpHeaders headers,
 										 @RequestBody com.example.paycaptainirmarkcalculator.eps.GovTalkMessage xmldata) throws Exception {
 
-		System.out.println("#### calculateeps monthnumber = "+ headers.get("monthnumber").get(0));
+		//System.out.println("#### calculateeps monthnumber = "+ headers.get("monthnumber").get(0));
 
 		//String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
 		String taxYear = xmldata.Body.IRenvelope.EmployerPaymentSummary.RelatedTaxYear;
@@ -136,7 +136,7 @@ public class DemoApplication {
 
 		IRMarkCalculator mc = new IRMarkCalculator();
 		String base64 = mc.createMark(targetStream);
-		System.out.println("#### calculateeps output base64 : "+base64);
+		//System.out.println("#### calculateeps output base64 : "+base64);
 
 		if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
 			xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
