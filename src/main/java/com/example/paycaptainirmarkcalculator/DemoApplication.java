@@ -28,11 +28,12 @@ public class DemoApplication {
 	@ResponseBody
 	@PostMapping(value = "/calculate", consumes = MediaType.APPLICATION_XML_VALUE)//
 	public String  getFoosBySimplePath(@RequestHeader HttpHeaders headers,
-									   @RequestBody GovTalkMessage xmldata) throws Exception {
+									   @RequestBody String xmlContent) throws Exception {
 
 		//System.out.println("####monthnumber = "+ headers.get("monthnumber").get(0));
 
 		//String endDateMonth = xmldata.Body.IRenvelope.IRheader.PeriodEnd;
+		/*
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
 
@@ -81,6 +82,7 @@ public class DemoApplication {
 		if(xmlContent.contains("NIlettersAndValuesZ")){
 			xmlContent = xmlContent.replace("NIlettersAndValuesZ", "NIlettersAndValues");
 		}
+		*/
 
 		InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
 
@@ -88,14 +90,15 @@ public class DemoApplication {
 		String base64 = mc.createMark(targetStream);
 		//System.out.println("output base64 : "+base64);
 
+		/*
 		if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
 			xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
 		}
 		if(xmlContent.contains("\n")){
 			xmlContent = xmlContent.replace("\n", "");
 		}
-
-		return xmlContent;
+		*/
+		return base64;
 	}
 
 	@ResponseBody
