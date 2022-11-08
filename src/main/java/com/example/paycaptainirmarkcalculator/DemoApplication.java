@@ -85,10 +85,11 @@ public class DemoApplication {
 		*/
 
 		InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
+		System.out.println("target stream: "+targetStream);
 
 		IRMarkCalculator mc = new IRMarkCalculator();
 		String base64 = mc.createMark(targetStream);
-		//System.out.println("output base64 : "+base64);
+		System.out.println("output base64 : "+base64);
 
 		/*
 		if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
