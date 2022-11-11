@@ -1,6 +1,9 @@
 package com.example.paycaptainirmarkcalculator;
 
+import com.example.paycaptainirmarkcalculator.controller.NotificationController;
 import com.example.paycaptainirmarkcalculator.fps.GovTalkMessage;
+import com.example.paycaptainirmarkcalculator.service.NotificationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpHeaders;
@@ -20,6 +23,9 @@ import java.io.StringWriter;
 @Controller
 @SpringBootApplication
 public class DemoApplication {
+
+	@Autowired
+	private NotificationController notificationController;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -82,20 +88,9 @@ public class DemoApplication {
 			xmlContent = xmlContent.replace("NIlettersAndValuesZ", "NIlettersAndValues");
 		}
 
-		InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
+		notificationController.sendMessage(xmlContent);
 
-		IRMarkCalculator mc = new IRMarkCalculator();
-		String base64 = mc.createMark(targetStream);
-		//System.out.println("output base64 : "+base64);
-
-		if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
-			xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
-		}
-		if(xmlContent.contains("\n")){
-			xmlContent = xmlContent.replace("\n", "");
-		}
-
-		return xmlContent;
+		return "success";
 	}
 
 	@ResponseBody
