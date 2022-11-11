@@ -1,6 +1,7 @@
 package com.example.paycaptainirmarkcalculator.service;
 
 import com.example.paycaptainirmarkcalculator.IRMarkCalculator;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class NotificationService {
 
+    @Async
     public void sendTestMessage(String xmlContent) throws Exception {
         //dummy logic to call 3rd party services
         sleep(60);
