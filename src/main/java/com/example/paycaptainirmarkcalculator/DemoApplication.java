@@ -2,6 +2,7 @@ package com.example.paycaptainirmarkcalculator;
 
 import com.example.paycaptainirmarkcalculator.controller.NotificationController;
 import com.example.paycaptainirmarkcalculator.fps.GovTalkMessage;
+import com.example.paycaptainirmarkcalculator.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,12 +24,10 @@ import java.io.StringWriter;
 
 @Controller
 @SpringBootApplication
-@ComponentScan({"com.delivery.request"})
-@EntityScan("com.delivery.domain")
 public class DemoApplication {
 
 	@Autowired(required = true)
-	private NotificationController notificationController;
+	private NotificationService notificationService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -91,7 +90,7 @@ public class DemoApplication {
 			xmlContent = xmlContent.replace("NIlettersAndValuesZ", "NIlettersAndValues");
 		}
 
-		notificationController.sendMessage(xmlContent);
+		notificationService.sendTestMessage(xmlContent);
 
 		return "success";
 	}
