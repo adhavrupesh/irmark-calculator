@@ -10,7 +10,7 @@ import java.util.concurrent.Executor;
 @Configuration
 public class AsynConfig extends AsyncConfigurerSupport {
 
-    @Autowired
+    @Autowired(required = false)
     private AsyncExceptionHandler asyncExceptionHandler;
 
     @Override

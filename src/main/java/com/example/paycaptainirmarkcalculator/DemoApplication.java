@@ -2,10 +2,11 @@ package com.example.paycaptainirmarkcalculator;
 
 import com.example.paycaptainirmarkcalculator.controller.NotificationController;
 import com.example.paycaptainirmarkcalculator.fps.GovTalkMessage;
-import com.example.paycaptainirmarkcalculator.service.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -22,9 +23,11 @@ import java.io.StringWriter;
 
 @Controller
 @SpringBootApplication
+@ComponentScan({"com.delivery.request"})
+@EntityScan("com.delivery.domain")
 public class DemoApplication {
 
-	@Autowired
+	@Autowired(required = true)
 	private NotificationController notificationController;
 
 	public static void main(String[] args) {

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class NotificationController {
 
-    @Autowired
+    @Autowired(required = true)
     private NotificationService notificationService;
 
     public String sendMessage(String xmlContent) throws Exception {
