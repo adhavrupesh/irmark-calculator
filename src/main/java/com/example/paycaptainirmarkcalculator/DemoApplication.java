@@ -92,6 +92,7 @@ public class DemoApplication {
 
 		notificationService.sendTestMessage(xmlContent);
 
+		System.out.println("send data to thread to process");
 		return "success";
 	}
 
