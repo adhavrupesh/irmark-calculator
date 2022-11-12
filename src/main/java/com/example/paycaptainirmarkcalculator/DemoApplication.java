@@ -25,11 +25,11 @@ import java.io.StringWriter;
 
 @Controller
 @SpringBootApplication
-@EnableAsync
+//@EnableAsync
 public class DemoApplication {
 
-	@Autowired(required = true)
-	private NotificationService notificationService;
+	//@Autowired(required = true)
+	//private NotificationService notificationService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
@@ -92,10 +92,22 @@ public class DemoApplication {
 			xmlContent = xmlContent.replace("NIlettersAndValuesZ", "NIlettersAndValues");
 		}
 
-		notificationService.sendTestMessage(xmlContent);
+		//notificationService.sendTestMessage(xmlContent);
+		InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
 
-		System.out.println("send data to thread to process");
-		return "success";
+		IRMarkCalculator mc = new IRMarkCalculator();
+		String base64 = mc.createMark(targetStream);
+		System.out.println("output base64 : "+base64);
+
+		if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
+			xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
+		}
+		if(xmlContent.contains("\n")){
+			xmlContent = xmlContent.replace("\n", "");
+		}
+
+
+		return xmlContent;
 	}
 
 	@ResponseBody
