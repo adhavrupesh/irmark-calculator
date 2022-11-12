@@ -106,7 +106,6 @@ public class DemoApplication {
 			xmlContent = xmlContent.replace("\n", "");
 		}
 
-
 		return xmlContent;
 	}
 
