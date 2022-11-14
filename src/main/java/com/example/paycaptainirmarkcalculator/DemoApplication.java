@@ -158,6 +158,7 @@ public class DemoApplication {
 	@PostMapping(value = "/generatefpsirmark/test", consumes = MediaType.APPLICATION_XML_VALUE)//
 	public String  testGenerateFPSXMLWithIRMark(@RequestHeader HttpHeaders headers,
 											@RequestBody GovTalkMessage xmldata) throws Exception {
+		System.out.println("testGenerateFPSXMLWithIRMark");
 
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
