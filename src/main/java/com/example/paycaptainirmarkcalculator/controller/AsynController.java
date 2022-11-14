@@ -1,4 +1,4 @@
-package com.example.paycaptainirmarkcalculator.service;
+package com.example.paycaptainirmarkcalculator.controller;
 
 import com.example.paycaptainirmarkcalculator.IRMarkCalculator;
 import org.springframework.scheduling.annotation.Async;
@@ -9,11 +9,11 @@ import java.io.InputStream;
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class NotificationService {
+public class AsynController{
 
     @Async
-    public void sendTestMessage(String xmlContent) throws Exception {
-        //dummy logic to call 3rd party services
+    public void generateIRMark(String xmlContent) throws Exception {
+
         sleep(60);
         System.out.println("xmlContent started processing");
 
