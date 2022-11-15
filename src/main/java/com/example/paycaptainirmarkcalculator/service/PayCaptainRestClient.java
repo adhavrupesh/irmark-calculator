@@ -16,6 +16,7 @@ public class PayCaptainRestClient {
     }
 
     public String authorize(){
+        System.out.println("authorize");
         try {
             return webClient.post().uri(PayCaptainConstants.SANDBOX_AUTHORIZE_URL)
                     .retrieve()

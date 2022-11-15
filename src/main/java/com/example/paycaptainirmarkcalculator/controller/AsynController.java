@@ -18,7 +18,7 @@ public class AsynController{
     @Async
     public void generateIRMark(String xmlContent) throws Exception {
 
-        sleep(60);
+        sleep(120);
         System.out.println("xmlContent started processing");
 
         InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
