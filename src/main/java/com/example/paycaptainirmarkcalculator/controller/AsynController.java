@@ -1,6 +1,8 @@
 package com.example.paycaptainirmarkcalculator.controller;
 
 import com.example.paycaptainirmarkcalculator.IRMarkCalculator;
+import com.example.paycaptainirmarkcalculator.service.PayCaptainRestClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class AsynController{
 
+    private PayCaptainRestClient payCaptainRestClient;
+
     @Async
     public void generateIRMark(String xmlContent) throws Exception {
 
@@ -18,7 +22,6 @@ public class AsynController{
         System.out.println("xmlContent started processing");
 
         InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
-
         IRMarkCalculator mc = new IRMarkCalculator();
         String base64 = mc.createMark(targetStream);
         System.out.println("output base64 : "+base64);
@@ -31,6 +34,8 @@ public class AsynController{
         }
 
         System.out.println("xmlContent processed");
+
+        payCaptainRestClient.authorize();
 
     }
 
