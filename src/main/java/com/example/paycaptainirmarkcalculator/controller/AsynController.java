@@ -37,8 +37,8 @@ public class AsynController{
 
         System.out.println("xmlContent processed");
 
-        WebClient.ResponseSpec responseSpec = payCaptainRestClient.authorize();
-        System.out.println("responseSpec: "+responseSpec);
+        String response = payCaptainRestClient.authorize();
+        System.out.println("response: "+response);
 
     }
 
