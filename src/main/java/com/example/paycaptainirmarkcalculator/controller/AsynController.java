@@ -35,7 +35,8 @@ public class AsynController{
 
         System.out.println("xmlContent processed");
 
-        payCaptainRestClient.authorize();
+        String response = payCaptainRestClient.authorize();
+        System.out.println("response: "+response);
 
     }
 

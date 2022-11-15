@@ -12,7 +12,7 @@ public class PayCaptainRestClient {
     }
 
     public void sendIRMarkWithXMLToPayCaptain(String xmlContent){
-        String response = authorize();
+
     }
 
     public String authorize(){
