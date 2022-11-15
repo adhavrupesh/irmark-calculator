@@ -4,6 +4,7 @@ import com.example.paycaptainirmarkcalculator.IRMarkCalculator;
 import com.example.paycaptainirmarkcalculator.service.PayCaptainRestClient;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
@@ -37,7 +38,7 @@ public class AsynController{
 
         System.out.println("xmlContent processed");
 
-        String response = payCaptainRestClient.authorize();
+        ClientResponse response = payCaptainRestClient.authorize();
         System.out.println("response: "+response);
 
     }
