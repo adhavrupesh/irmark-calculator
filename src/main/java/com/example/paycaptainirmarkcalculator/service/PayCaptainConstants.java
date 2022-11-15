@@ -4,6 +4,9 @@ public class PayCaptainConstants {
     public static final String CLIENT_ID = "3MVG9od6vNol.eBh2ig4mdGAEEQoVDKdQ6svzuGEgGvuMs4.GceA25dhSDKbTn_j_RuTR0ECPqHCUzL1MyKkA";
     public static final String CLIENT_SECRET = "38D53D874B02923E6C59E481A4E05593EFB9683E7CA5A06FC18A8C2C452B4CD2";
 
+    public static final String SANDBOX_BASE_URL = "https://paycaptain--dev.sandbox.lightning.force.com";
+    public static final String SANDBOX_DOMAIN_URL = "https://paycaptain--dev.sandbox.lightning.force.com";
+
     public static final String SANDBOX_AUTHORIZE_URL = "https://paycaptain--dev.sandbox.lightning.force.com/services/oauth2/authorize?"
             +"&client_id="+CLIENT_ID
             +"&redirect_uri=https://www.google.com"

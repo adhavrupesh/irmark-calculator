@@ -4,6 +4,7 @@ import com.example.paycaptainirmarkcalculator.IRMarkCalculator;
 import com.example.paycaptainirmarkcalculator.service.PayCaptainRestClient;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.io.ByteArrayInputStream;
@@ -13,7 +14,8 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class AsynController{
 
-    private PayCaptainRestClient payCaptainRestClient;
+    WebClient webClient = WebClient.create();
+    PayCaptainRestClient payCaptainRestClient = new PayCaptainRestClient(webClient);
 
     @Async
     public void generateIRMark(String xmlContent) throws Exception {
@@ -35,8 +37,8 @@ public class AsynController{
 
         System.out.println("xmlContent processed");
 
-        Mono<String> response = payCaptainRestClient.authorize();
-        System.out.println("response: "+response);
+        WebClient.ResponseSpec responseSpec = payCaptainRestClient.authorize();
+        System.out.println("responseSpec: "+responseSpec);
 
     }
 

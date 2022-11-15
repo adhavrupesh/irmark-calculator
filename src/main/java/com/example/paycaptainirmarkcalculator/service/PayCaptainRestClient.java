@@ -16,12 +16,11 @@ public class PayCaptainRestClient {
 
     }
 
-    public Mono<String> authorize(){
+    public WebClient.ResponseSpec authorize(){
         System.out.println("authorize");
         try {
             return webClient.post().uri(PayCaptainConstants.SANDBOX_AUTHORIZE_URL)
-                    .retrieve()
-                    .bodyToMono(String.class);
+                    .retrieve();
 
         } catch (WebClientResponseException ex) {
             System.out.println("Error Response code is: "+ex.getRawStatusCode()
