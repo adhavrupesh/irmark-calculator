@@ -2,7 +2,6 @@ package com.example.paycaptainirmarkcalculator.service;
 
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
-import reactor.core.publisher.Mono;
 
 public class PayCaptainRestClient {
 
@@ -16,11 +15,11 @@ public class PayCaptainRestClient {
 
     }
 
-    public Mono<String> authorize(){
+    public WebClient.ResponseSpec authorize(){
         System.out.println("authorize");
         try {
-            return webClient.post().uri(PayCaptainConstants.SANDBOX_AUTHORIZE_URL)
-                    .retrieve().bodyToMono(String.class);
+            return webClient.get().uri(PayCaptainConstants.SANDBOX_AUTHORIZE_URL)
+                    .retrieve();
         } catch (WebClientResponseException ex) {
             System.out.println("Error Response code is: "+ex.getRawStatusCode()
                         +" and the message is: "+ex.getResponseBodyAsString());

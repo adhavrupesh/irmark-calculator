@@ -38,8 +38,8 @@ public class AsynController{
 
         System.out.println("xmlContent processed");
 
-        Mono<String> response = payCaptainRestClient.authorize();
-        System.out.println("response: "+response);
+        WebClient.ResponseSpec responseSpec = payCaptainRestClient.authorize();
+        System.out.println("response: "+responseSpec);
 
     }
 
