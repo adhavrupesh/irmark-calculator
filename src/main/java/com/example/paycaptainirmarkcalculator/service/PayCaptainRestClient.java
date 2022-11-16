@@ -15,12 +15,12 @@ public class PayCaptainRestClient {
 
     }
 
-    public String authorize(){
+    public PayCaptainResponseWrapper authorize(){
         System.out.println("authorize");
         try {
             return webClient.get().uri(PayCaptainConstants.SANDBOX_ACCESS_TOKEN_URL)
                     .retrieve()
-                    .bodyToMono(String.class)
+                    .bodyToMono(PayCaptainResponseWrapper.class)
                     .block();
         } catch (WebClientResponseException ex) {
             System.out.println("Error Response code is: "+ex.getRawStatusCode()

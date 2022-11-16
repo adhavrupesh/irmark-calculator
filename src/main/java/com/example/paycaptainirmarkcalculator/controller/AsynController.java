@@ -1,6 +1,7 @@
 package com.example.paycaptainirmarkcalculator.controller;
 
 import com.example.paycaptainirmarkcalculator.IRMarkCalculator;
+import com.example.paycaptainirmarkcalculator.service.PayCaptainResponseWrapper;
 import com.example.paycaptainirmarkcalculator.service.PayCaptainRestClient;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -36,8 +37,8 @@ public class AsynController{
 
         System.out.println("xmlContent processed");
 
-        String response = payCaptainRestClient.authorize();
-        System.out.println("response: "+response);
+        PayCaptainResponseWrapper payCaptainResponseWrapper = payCaptainRestClient.authorize();
+        System.out.println("response: "+payCaptainResponseWrapper);
 
     }
 
