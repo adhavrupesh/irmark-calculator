@@ -5,24 +5,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PayCaptainResponseWrapper {
 
     @JsonProperty("access_token")
-    private String access_token;
+    public String access_token;
 
     @JsonProperty("signature")
-    private String signature;
+    public String signature;
 
     @JsonProperty("scope")
-    private String scope;
+    public String scope;
 
     @JsonProperty("instance_url")
-    private String instance_url;
+    public String instance_url;
 
     @JsonProperty("id")
-    private String id;
+    public String id;
 
     @JsonProperty("token_type")
-    private String token_type;
+    public String token_type;
 
     @JsonProperty("issued_at")
-    private String issued_at;
+    public String issued_at;
 
 }

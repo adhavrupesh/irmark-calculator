@@ -3,6 +3,7 @@ package com.example.paycaptainirmarkcalculator.controller;
 import com.example.paycaptainirmarkcalculator.IRMarkCalculator;
 import com.example.paycaptainirmarkcalculator.service.PayCaptainResponseWrapper;
 import com.example.paycaptainirmarkcalculator.service.PayCaptainRestClient;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -37,8 +38,14 @@ public class AsynController{
 
         System.out.println("xmlContent processed");
 
-        PayCaptainResponseWrapper payCaptainResponseWrapper = payCaptainRestClient.authorize();
-        System.out.println("response: "+payCaptainResponseWrapper);
+        String response = payCaptainRestClient.authorize();
+        System.out.println("response: "+response);
+        //deserialize response to object
+        ObjectMapper objectMapper = new ObjectMapper();
+        PayCaptainResponseWrapper payCaptainResponseWrapper = objectMapper.readValue(response, PayCaptainResponseWrapper.class);
+        System.out.println("payCaptainResponseWrapper: "+payCaptainResponseWrapper);
+        System.out.println("access token: "+payCaptainResponseWrapper.access_token);
+
 
     }
 
