@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PayCaptainResponseWrapper {
 
     @JsonProperty("access_token")
-    private long access_token;
+    private String access_token;
 
     @JsonProperty("signature")
     private String signature;
