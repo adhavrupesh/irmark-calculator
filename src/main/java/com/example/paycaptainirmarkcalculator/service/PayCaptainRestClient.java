@@ -1,7 +1,12 @@
 package com.example.paycaptainirmarkcalculator.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class PayCaptainRestClient {
 
@@ -11,24 +16,28 @@ public class PayCaptainRestClient {
         this.webClient = webClient;
     }
 
-    public void sendIRMarkWithXMLToPayCaptain(String xmlContent){
-
-    }
-
-    public String authorize(){
-        System.out.println("authorize");
+    public String sendIRMarkToPayCaptain(String xmlContent, String hmrcId) throws JsonProcessingException {
+        System.out.println("sendIRMarkToPayCaptain");
         try {
-            return webClient.get().uri(PayCaptainConstants.SANDBOX_ACCESS_TOKEN_URL)
+            Map<String, String> mp = new HashMap();
+            mp.put("xmlContent", xmlContent);
+            mp.put("hmrcId", hmrcId);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            xmlContent = objectMapper.writeValueAsString(mp);
+
+            return webClient.patch()
+                    .uri(PayCaptainConstants.SANDBOX_WEBHOOK_URL)
+                    .body(xmlContent, String.class)
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();
+
         } catch (WebClientResponseException ex) {
-            System.out.println("Error Response code is: "+ex.getRawStatusCode()
-                        +" and the message is: "+ex.getResponseBodyAsString());
-            //System.out.println("WebClientResponseException in addNewEmployee"+ex);
+            System.out.println("Error Response code is: "+ex.getRawStatusCode()+" and the message is: "+ex.getResponseBodyAsString());
             throw ex;
         } catch (Exception ex) {
-            System.out.println("Exception in authorize(): "+ex.getMessage());
+            System.out.println("Exception in sendIRMarkToPayCaptain(): "+ex.getMessage());
             throw ex;
         }
     }

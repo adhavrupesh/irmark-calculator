@@ -161,6 +161,8 @@ public class DemoApplication {
 
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
+		String hmrcId = headers.get("hmrcId").get(0);
+		System.out.println("hmrcId: "+hmrcId);
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -170,45 +172,7 @@ public class DemoApplication {
 
 		String xmlContent = sw.toString();
 
-		if(xmlContent.contains("<MessageDetailsClass>")) {
-			xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
-			xmlContent = xmlContent.replace("</MessageDetailsClass>", "</Class>");
-		}
-		if(xmlContent.contains("<IRenvelope>")){
-			xmlContent = xmlContent.replace("<IRenvelope>",
-					"<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/"+taxYear+"/"+endDateMonth+"\">");
-		}
-		if(xmlContent.contains(" standalone=\"yes\"")){
-			xmlContent = xmlContent.replace(" standalone=\"yes\"", "");
-		}
-		if(xmlContent.contains("\n")){
-			xmlContent = xmlContent.replace("\n", "");
-		}
-
-		//added on 09 December 2021
-		if(xmlContent.contains("NIlettersAndValuesB")){
-			xmlContent = xmlContent.replace("NIlettersAndValuesB", "NIlettersAndValues");
-		}
-		if(xmlContent.contains("NIlettersAndValuesC")){
-			xmlContent = xmlContent.replace("NIlettersAndValuesC", "NIlettersAndValues");
-		}
-		if(xmlContent.contains("NIlettersAndValuesH")){
-			xmlContent = xmlContent.replace("NIlettersAndValuesH", "NIlettersAndValues");
-		}
-		if(xmlContent.contains("NIlettersAndValuesJ")){
-			xmlContent = xmlContent.replace("NIlettersAndValuesJ", "NIlettersAndValues");
-		}
-		if(xmlContent.contains("NIlettersAndValuesM")){
-			xmlContent = xmlContent.replace("NIlettersAndValuesM", "NIlettersAndValues");
-		}
-		if(xmlContent.contains("NIlettersAndValuesX")){
-			xmlContent = xmlContent.replace("NIlettersAndValuesX", "NIlettersAndValues");
-		}
-		if(xmlContent.contains("NIlettersAndValuesZ")){
-			xmlContent = xmlContent.replace("NIlettersAndValuesZ", "NIlettersAndValues");
-		}
-
-		asynController.generateIRMark(xmlContent);;
+		asynController.generateIRMark(xmlContent, taxYear, endDateMonth, hmrcId);;
 
 		return "success";
 	}
