@@ -76,7 +76,7 @@ public class AsynController{
         }
         System.out.println("xmlContent processed");
 
-        String response = payCaptainRestClient.sendIRMarkToPayCaptain(xmlContent, hmrcId);
+        String response = payCaptainRestClient.sendIRMarkToPayCaptain(hmrcId);
         System.out.println("response: "+response);
 
     }
