@@ -31,7 +31,7 @@ public class PayCaptainRestClient {
 
             return webClient.patch()
                     .uri(PayCaptainConstants.SANDBOX_WEBHOOK_URL)
-                    .body(hmrcId, String.class)
+                    .bodyValue(hmrcId)
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();
