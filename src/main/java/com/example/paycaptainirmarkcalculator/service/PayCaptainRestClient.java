@@ -18,6 +18,7 @@ public class PayCaptainRestClient {
 
     public String sendIRMarkToPayCaptain(String xmlContent, String hmrcId) throws JsonProcessingException {
         System.out.println("sendIRMarkToPayCaptain");
+        System.out.println("hmrcId: "+hmrcId);
         try {
             Map<String, String> mp = new HashMap();
             mp.put("xmlContent", xmlContent);
@@ -28,7 +29,7 @@ public class PayCaptainRestClient {
 
             return webClient.patch()
                     .uri(PayCaptainConstants.SANDBOX_WEBHOOK_URL)
-                    .body(xmlContent, String.class)
+                    .body(hmrcId, String.class)
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();
