@@ -17,21 +17,21 @@ public class PayCaptainRestClient {
         this.webClient = webClient;
     }
 
-    public String sendIRMarkToPayCaptain(String hmrcId) throws JsonProcessingException {
+    public String sendIRMarkToPayCaptain(String xmlContent, String hmrcId) throws JsonProcessingException {
 
         System.out.println("sendIRMarkToPayCaptain");
         System.out.println("hmrcId: "+hmrcId);
         try {
-            /*Map<String, String> mp = new HashMap();
+            Map<String, String> mp = new HashMap();
             mp.put("xmlContent", xmlContent);
             mp.put("hmrcId", hmrcId);
 
             ObjectMapper objectMapper = new ObjectMapper();
-            xmlContent = objectMapper.writeValueAsString(mp);*/
+            xmlContent = objectMapper.writeValueAsString(mp);
 
             return webClient.patch()
                     .uri(PayCaptainConstants.SANDBOX_WEBHOOK_URL)
-                    .bodyValue(hmrcId)
+                    .bodyValue(xmlContent)
                     .retrieve()
                     .bodyToMono(String.class)
                     .block();
