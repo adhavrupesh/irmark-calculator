@@ -19,10 +19,10 @@ public class AsynController{
     PayCaptainRestClient payCaptainRestClient = new PayCaptainRestClient(webClient);
 
     @Async
-    public void generateIRMark(String xmlContent, String taxYear, String endDateMonth, String hmrcId) throws Exception {
+    public void generateFPSIRMark(String xmlContent, String taxYear, String endDateMonth, String hmrcId, String isSandbox) throws Exception {
 
         sleep(120);
-        System.out.println("xmlContent started processing");
+        System.out.println("fps xmlContent started processing");
 
         if(xmlContent.contains("<MessageDetailsClass>")) {
             xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
@@ -66,7 +66,7 @@ public class AsynController{
         InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
         IRMarkCalculator mc = new IRMarkCalculator();
         String base64 = mc.createMark(targetStream);
-        System.out.println("output base64 : "+base64);
+        System.out.println("fps output base64 : "+base64);
 
         if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
             xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
@@ -74,11 +74,50 @@ public class AsynController{
         if(xmlContent.contains("\n")){
             xmlContent = xmlContent.replace("\n", "");
         }
-        System.out.println("xmlContent processed");
+        System.out.println("fps xmlContent processed");
 
-        String response = payCaptainRestClient.sendIRMarkToPayCaptain(xmlContent, hmrcId);
-        System.out.println("response: "+response);
+        String response = payCaptainRestClient.sendIRMarkToPayCaptain(xmlContent, hmrcId, isSandbox);
+        System.out.println("fps response: "+response);
 
+    }
+
+    @Async
+    public void generateEPSIRMark(String xmlContent, String taxYear, String endDateMonth, String hmrcId, String isSandbox) throws Exception {
+
+        sleep(120);
+        System.out.println("eps xmlContent started processing");
+
+        if(xmlContent.contains("<MessageDetailsClass>")) {
+            xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
+            xmlContent = xmlContent.replace("</MessageDetailsClass>", "</Class>");
+        }
+        if(xmlContent.contains("<IRenvelope>")){
+            xmlContent = xmlContent.replace("<IRenvelope>",
+                    "<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/EmployerPaymentSummary/"+taxYear+"/"+endDateMonth+"\">");
+        }
+        if(xmlContent.contains(" standalone=\"yes\"")){
+            xmlContent = xmlContent.replace(" standalone=\"yes\"", "");
+        }
+        if(xmlContent.contains("\n")){
+            xmlContent = xmlContent.replace("\n", "");
+        }
+
+        InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
+        IRMarkCalculator mc = new IRMarkCalculator();
+        String base64 = mc.createMark(targetStream);
+        System.out.println("eps output base64 : "+base64);
+
+        if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
+            xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
+        }
+        if(xmlContent.contains("\n")){
+            xmlContent = xmlContent.replace("\n", "");
+        }
+
+        System.out.println("eps xmlContent processed");
+
+        String response = payCaptainRestClient.sendIRMarkToPayCaptain(xmlContent, hmrcId, isSandbox);
+        System.out.println("eps response: "+response);
     }
 
     private void sleep(int args){
