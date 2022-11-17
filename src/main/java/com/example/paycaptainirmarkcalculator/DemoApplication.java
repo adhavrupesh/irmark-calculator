@@ -161,8 +161,8 @@ public class DemoApplication {
 
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
-		String hmrcId = "a0n2600000BwtpDAAR";
-		System.out.println("hmrcId: "+headers.get("hmrcId"));
+		String hmrcId = headers.get("hmrcId").get(0);
+		System.out.println("hmrcId: "+hmrcId);
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
