@@ -2,6 +2,8 @@ package com.example.paycaptainirmarkcalculator.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
@@ -31,6 +33,7 @@ public class PayCaptainRestClient {
 
             return webClient.patch()
                     .uri(PayCaptainConstants.SANDBOX_WEBHOOK_URL)
+                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                     .bodyValue(xmlContent)
                     .retrieve()
                     .bodyToMono(String.class)
