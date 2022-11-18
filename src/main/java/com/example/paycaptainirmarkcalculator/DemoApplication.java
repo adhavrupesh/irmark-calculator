@@ -94,8 +94,9 @@ public class DemoApplication {
 
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
+		Boolean isSandbox = headers.get("isSandbox").get(0).equalsIgnoreCase("Yes") ? true : false;
 		String hmrcId = headers.get("hmrcId").get(0);
-		String isSandbox = headers.get("isSandbox").get(0);
+		String key = headers.get("key").get(0);
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -105,7 +106,7 @@ public class DemoApplication {
 
 		String xmlContent = sw.toString();
 
-		asynController.generateFPSIRMark(xmlContent, taxYear, endDateMonth, hmrcId, isSandbox);;
+		asynController.generateFPSIRMarkTest(xmlContent, taxYear, endDateMonth, key, hmrcId, isSandbox);;
 
 		return "success";
 	}

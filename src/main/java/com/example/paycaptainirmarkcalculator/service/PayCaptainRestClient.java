@@ -53,4 +53,46 @@ public class PayCaptainRestClient {
 
         }
     }
+
+
+
+
+
+
+
+
+    public String sendIRMarkToPayCaptainTest(String xmlContent, String key, String hmrcId, Boolean isSandbox) throws JsonProcessingException {
+        System.out.println("sendIRMarkToPayCaptain");
+        System.out.println("hmrcId: "+hmrcId);
+
+        try {
+            String webhookUrl = isSandbox ? PayCaptainConstants.SANDBOX_WEBHOOK_URL : PayCaptainConstants.PRODUCTION_WEBHOOK_URL;
+            System.out.println("webhookUrl: "+webhookUrl);
+
+            Map<String, String> mp = new HashMap();
+            mp.put("xmlContent", xmlContent);
+            mp.put("key", key);
+            mp.put("hmrcId", hmrcId);
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            String bodyValue = objectMapper.writeValueAsString(mp);
+
+            return webClient.patch()
+                    .uri(webhookUrl)
+                    .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                    .bodyValue(bodyValue)
+                    .retrieve()
+                    .bodyToMono(String.class)
+                    .block();
+
+        } catch (WebClientResponseException ex) {
+            System.out.println("Error Response code is: "+ex.getRawStatusCode()+" and the message is: "+ex.getResponseBodyAsString());
+            throw ex;
+
+        } catch (Exception ex) {
+            System.out.println("Exception in sendIRMarkToPayCaptain(): "+ex.getMessage());
+            throw ex;
+
+        }
+    }
 }

@@ -127,4 +127,72 @@ public class AsynController{
             e.printStackTrace();
         }
     }
+
+
+
+
+
+    @Async
+    public void generateFPSIRMarkTest(String xmlContent, String taxYear, String endDateMonth, String key, String hmrcId, Boolean isSandbox) throws Exception {
+
+        sleep(120);
+        System.out.println("fps xmlContent started processing");
+
+        if(xmlContent.contains("<MessageDetailsClass>")) {
+            xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
+            xmlContent = xmlContent.replace("</MessageDetailsClass>", "</Class>");
+        }
+        if(xmlContent.contains("<IRenvelope>")){
+            xmlContent = xmlContent.replace("<IRenvelope>",
+                    "<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/"+taxYear+"/"+endDateMonth+"\">");
+        }
+        if(xmlContent.contains(" standalone=\"yes\"")){
+            xmlContent = xmlContent.replace(" standalone=\"yes\"", "");
+        }
+        if(xmlContent.contains("\n")){
+            xmlContent = xmlContent.replace("\n", "");
+        }
+
+        //added on 09 December 2021
+        if(xmlContent.contains("NIlettersAndValuesB")){
+            xmlContent = xmlContent.replace("NIlettersAndValuesB", "NIlettersAndValues");
+        }
+        if(xmlContent.contains("NIlettersAndValuesC")){
+            xmlContent = xmlContent.replace("NIlettersAndValuesC", "NIlettersAndValues");
+        }
+        if(xmlContent.contains("NIlettersAndValuesH")){
+            xmlContent = xmlContent.replace("NIlettersAndValuesH", "NIlettersAndValues");
+        }
+        if(xmlContent.contains("NIlettersAndValuesJ")){
+            xmlContent = xmlContent.replace("NIlettersAndValuesJ", "NIlettersAndValues");
+        }
+        if(xmlContent.contains("NIlettersAndValuesM")){
+            xmlContent = xmlContent.replace("NIlettersAndValuesM", "NIlettersAndValues");
+        }
+        if(xmlContent.contains("NIlettersAndValuesX")){
+            xmlContent = xmlContent.replace("NIlettersAndValuesX", "NIlettersAndValues");
+        }
+        if(xmlContent.contains("NIlettersAndValuesZ")){
+            xmlContent = xmlContent.replace("NIlettersAndValuesZ", "NIlettersAndValues");
+        }
+
+
+        InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
+        IRMarkCalculator mc = new IRMarkCalculator();
+        String base64 = mc.createMark(targetStream);
+        System.out.println("fps output base64 : "+base64);
+
+        if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
+            xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
+        }
+        if(xmlContent.contains("\n")){
+            xmlContent = xmlContent.replace("\n", "");
+        }
+        System.out.println("fps xmlContent processed");
+
+        String response = payCaptainRestClient.sendIRMarkToPayCaptainTest(xmlContent, key, hmrcId, isSandbox);
+        System.out.println("fps response: "+response);
+
+    }
+
 }
