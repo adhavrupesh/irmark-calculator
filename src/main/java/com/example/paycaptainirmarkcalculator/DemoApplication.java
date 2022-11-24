@@ -42,6 +42,11 @@ public class DemoApplication {
 		String hmrcId = headers.get("hmrcId").get(0);
 		String isSandbox = headers.get("isSandbox").get(0);
 
+		System.out.println("tasYear: "+taxYear);
+		System.out.println("endDateMonth: "+endDateMonth);
+		System.out.println("hmrcId: "+hmrcId);
+		System.out.println("isSandbox: "+isSandbox);
+
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
