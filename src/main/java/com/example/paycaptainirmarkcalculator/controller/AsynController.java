@@ -132,8 +132,9 @@ public class AsynController{
 
 
 
+    // use this functions for editing and testing code.
     @Async
-    public void generateFPSIRMarkTest(String xmlContent, String taxYear, String endDateMonth, String hmrcId, String isSandbox) throws Exception {
+    public void generateFPSIRMarkTest(String xmlContent, String taxYear, String endDateMonth, String hmrcId, String key, String isSandbox) throws Exception {
 
         sleep(120);
         System.out.println("Test fps xmlContent started processing");
@@ -190,7 +191,7 @@ public class AsynController{
         }
         System.out.println("Test fps xmlContent processed");
 
-        String response = payCaptainRestClient.sendIRMarkToPayCaptainTest(xmlContent, hmrcId, isSandbox);
+        String response = payCaptainRestClient.sendIRMarkToPayCaptainTest(xmlContent, hmrcId, key, isSandbox);
         System.out.println("Test fps response: "+response);
 
     }

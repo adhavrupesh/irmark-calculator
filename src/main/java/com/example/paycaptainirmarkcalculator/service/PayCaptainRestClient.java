@@ -61,7 +61,8 @@ public class PayCaptainRestClient {
 
 
 
-    public String sendIRMarkToPayCaptainTest(String xmlContent, String hmrcId, String isSandbox) throws JsonProcessingException {
+    // use this functions for editing and testing code.
+    public String sendIRMarkToPayCaptainTest(String xmlContent, String hmrcId, String key, String isSandbox) throws JsonProcessingException {
         System.out.println("Test sendIRMarkToPayCaptain");
         System.out.println("Test hmrcId: "+hmrcId);
 
@@ -71,8 +72,9 @@ public class PayCaptainRestClient {
             System.out.println("Test webhookUrl: "+webhookUrl);
 
             Map<String, String> mp = new HashMap();
-            mp.put("Test xmlContent", xmlContent);
-            mp.put("Test hmrcId", hmrcId);
+            mp.put("xmlContent", xmlContent);
+            mp.put("key", key);
+            mp.put("hmrcId", hmrcId);
 
             ObjectMapper objectMapper = new ObjectMapper();
             String bodyValue = objectMapper.writeValueAsString(mp);

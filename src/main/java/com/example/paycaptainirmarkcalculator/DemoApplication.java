@@ -90,7 +90,9 @@ public class DemoApplication {
 
 
 
-
+	// use this functions for editing and testing code.
+	// AsynController.generateFPSIRMarkTest
+	// PayCaptainRestClient.sendIRMarkToPayCaptainTest
 	@ResponseBody
 	@PostMapping(value = "/generatefpsirmark/test", consumes = MediaType.APPLICATION_XML_VALUE)//
 	public String  generateFPSXMLWithIRMarkTest(@RequestHeader HttpHeaders headers,
@@ -98,6 +100,7 @@ public class DemoApplication {
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
 		String hmrcId = headers.get("hmrcId").get(0);
+		String key = headers.get("key").get(0);
 		String isSandbox = headers.get("isSandbox").get(0);
 
 		System.out.println("Test taxYear: "+taxYear);
@@ -113,7 +116,7 @@ public class DemoApplication {
 
 		String xmlContent = sw.toString();
 
-		asynController.generateFPSIRMarkTest(xmlContent, taxYear, endDateMonth, hmrcId, isSandbox);;
+		asynController.generateFPSIRMarkTest(xmlContent, taxYear, endDateMonth, hmrcId, key, isSandbox);;
 
 		return "success";
 	}
