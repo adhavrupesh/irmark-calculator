@@ -133,10 +133,10 @@ public class AsynController{
 
 
     @Async
-    public void generateFPSIRMarkTest(String xmlContent, String taxYear, String endDateMonth, String key, String hmrcId, Boolean isSandbox) throws Exception {
+    public void generateFPSIRMarkTest(String xmlContent, String taxYear, String endDateMonth, String hmrcId, String isSandbox) throws Exception {
 
         sleep(120);
-        System.out.println("fps xmlContent started processing");
+        System.out.println("Test fps xmlContent started processing");
 
         if(xmlContent.contains("<MessageDetailsClass>")) {
             xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
@@ -180,7 +180,7 @@ public class AsynController{
         InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
         IRMarkCalculator mc = new IRMarkCalculator();
         String base64 = mc.createMark(targetStream);
-        System.out.println("fps output base64 : "+base64);
+        System.out.println("Test fps output base64 : "+base64);
 
         if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
             xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
@@ -188,10 +188,10 @@ public class AsynController{
         if(xmlContent.contains("\n")){
             xmlContent = xmlContent.replace("\n", "");
         }
-        System.out.println("fps xmlContent processed");
+        System.out.println("Test fps xmlContent processed");
 
-        String response = payCaptainRestClient.sendIRMarkToPayCaptainTest(xmlContent, key, hmrcId, isSandbox);
-        System.out.println("fps response: "+response);
+        String response = payCaptainRestClient.sendIRMarkToPayCaptainTest(xmlContent, hmrcId, isSandbox);
+        System.out.println("Test fps response: "+response);
 
     }
 

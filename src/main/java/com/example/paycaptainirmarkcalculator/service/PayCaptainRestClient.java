@@ -61,18 +61,18 @@ public class PayCaptainRestClient {
 
 
 
-    public String sendIRMarkToPayCaptainTest(String xmlContent, String key, String hmrcId, Boolean isSandbox) throws JsonProcessingException {
-        System.out.println("sendIRMarkToPayCaptain");
-        System.out.println("hmrcId: "+hmrcId);
+    public String sendIRMarkToPayCaptainTest(String xmlContent, String hmrcId, String isSandbox) throws JsonProcessingException {
+        System.out.println("Test sendIRMarkToPayCaptain");
+        System.out.println("Test hmrcId: "+hmrcId);
 
         try {
-            String webhookUrl = isSandbox ? PayCaptainConstants.SANDBOX_WEBHOOK_URL : PayCaptainConstants.PRODUCTION_WEBHOOK_URL;
-            System.out.println("webhookUrl: "+webhookUrl);
+
+            String webhookUrl = PayCaptainConstants.FULL_COPY_SANDBOX_WEBHOOK_URL;
+            System.out.println("Test webhookUrl: "+webhookUrl);
 
             Map<String, String> mp = new HashMap();
-            mp.put("xmlContent", xmlContent);
-            mp.put("key", key);
-            mp.put("hmrcId", hmrcId);
+            mp.put("Test xmlContent", xmlContent);
+            mp.put("Test hmrcId", hmrcId);
 
             ObjectMapper objectMapper = new ObjectMapper();
             String bodyValue = objectMapper.writeValueAsString(mp);
@@ -86,11 +86,11 @@ public class PayCaptainRestClient {
                     .block();
 
         } catch (WebClientResponseException ex) {
-            System.out.println("Error Response code is: "+ex.getRawStatusCode()+" and the message is: "+ex.getResponseBodyAsString());
+            System.out.println("Test Error Response code is: "+ex.getRawStatusCode()+" and the message is: "+ex.getResponseBodyAsString());
             throw ex;
 
         } catch (Exception ex) {
-            System.out.println("Exception in sendIRMarkToPayCaptain(): "+ex.getMessage());
+            System.out.println("Test Exception in sendIRMarkToPayCaptain(): "+ex.getMessage());
             throw ex;
 
         }

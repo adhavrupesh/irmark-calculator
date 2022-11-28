@@ -42,7 +42,7 @@ public class DemoApplication {
 		String hmrcId = headers.get("hmrcId").get(0);
 		String isSandbox = headers.get("isSandbox").get(0);
 
-		System.out.println("tasYear: "+taxYear);
+		System.out.println("taxYear: "+taxYear);
 		System.out.println("endDateMonth: "+endDateMonth);
 		System.out.println("hmrcId: "+hmrcId);
 		System.out.println("isSandbox: "+isSandbox);
@@ -93,15 +93,17 @@ public class DemoApplication {
 
 	@ResponseBody
 	@PostMapping(value = "/generatefpsirmark/test", consumes = MediaType.APPLICATION_XML_VALUE)//
-	public String  testGenerateFPSXMLWithIRMark(@RequestHeader HttpHeaders headers,
+	public String  generateFPSXMLWithIRMarkTest(@RequestHeader HttpHeaders headers,
 												@RequestBody GovTalkMessage xmldata) throws Exception {
-		System.out.println("testGenerateFPSXMLWithIRMark");
-
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
-		Boolean isSandbox = headers.get("isSandbox").get(0).equalsIgnoreCase("Yes") ? true : false;
 		String hmrcId = headers.get("hmrcId").get(0);
-		String key = headers.get("key").get(0);
+		String isSandbox = headers.get("isSandbox").get(0);
+
+		System.out.println("Test taxYear: "+taxYear);
+		System.out.println("Test endDateMonth: "+endDateMonth);
+		System.out.println("Test hmrcId: "+hmrcId);
+		System.out.println("Test isSandbox: "+isSandbox);
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
@@ -111,7 +113,7 @@ public class DemoApplication {
 
 		String xmlContent = sw.toString();
 
-		asynController.generateFPSIRMarkTest(xmlContent, taxYear, endDateMonth, key, hmrcId, isSandbox);;
+		asynController.generateFPSIRMarkTest(xmlContent, taxYear, endDateMonth, hmrcId, isSandbox);;
 
 		return "success";
 	}
