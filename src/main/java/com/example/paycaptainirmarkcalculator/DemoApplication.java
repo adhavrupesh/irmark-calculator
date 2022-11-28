@@ -97,6 +97,8 @@ public class DemoApplication {
 	@PostMapping(value = "/generatefpsirmark/test", consumes = MediaType.APPLICATION_XML_VALUE)//
 	public String  generateFPSXMLWithIRMarkTest(@RequestHeader HttpHeaders headers,
 												@RequestBody GovTalkMessage xmldata) throws Exception {
+		System.out.println("generateFPSXMLWithIRMarkTest");
+
 		String taxYear = xmldata.Body.IRenvelope.FullPaymentSubmission.RelatedTaxYear;
 		String endDateMonth = headers.get("monthnumber").get(0);
 		String hmrcId = headers.get("hmrcId").get(0);
@@ -106,6 +108,7 @@ public class DemoApplication {
 		System.out.println("Test taxYear: "+taxYear);
 		System.out.println("Test endDateMonth: "+endDateMonth);
 		System.out.println("Test hmrcId: "+hmrcId);
+		System.out.println("Test key: "+key);
 		System.out.println("Test isSandbox: "+isSandbox);
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(GovTalkMessage.class);
