@@ -84,6 +84,30 @@ public class DemoApplication {
 	}
 
 
+	@ResponseBody
+	@PostMapping(value = "/generatagentauthirmark", consumes = MediaType.APPLICATION_XML_VALUE)//
+	public String  generateEPSXMLWithIRMark(@RequestHeader HttpHeaders headers,
+										 	@RequestBody com.example.paycaptainirmarkcalculator.eps.GovTalkMessage xmldata) throws Exception {
+
+		String hmrcId = headers.get("hmrcId").get(0);
+		String isSandbox = headers.get("isSandbox").get(0);
+
+		JAXBContext jaxbContext = JAXBContext.newInstance(com.example.paycaptainirmarkcalculator.eps.GovTalkMessage.class);
+		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+		StringWriter sw = new StringWriter();
+		jaxbMarshaller.marshal(xmldata, sw);
+
+		String xmlContent = sw.toString();
+
+		asynController.generateAgentAuthIRMark(xmlContent, hmrcId, isSandbox);;
+
+		return "success";
+	}
+
+
+
+
 
 
 
