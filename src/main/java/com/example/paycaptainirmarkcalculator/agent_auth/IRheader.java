@@ -11,5 +11,5 @@ public class IRheader {
     @XmlElement
     public String Sender;
     @XmlElement
-    public IRmark IRmark;
+    public com.example.paycaptainirmarkcalculator.fps.IRmark IRmark;
  }
