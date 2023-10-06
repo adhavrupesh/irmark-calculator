@@ -1,7 +1,4 @@
 package com.example.paycaptainirmarkcalculator.agent_auth;
-
-package com.example.paycaptainirmarkcalculator.fps;
-
 import javax.xml.bind.annotation.XmlElement;
 
 public class IRheader {
