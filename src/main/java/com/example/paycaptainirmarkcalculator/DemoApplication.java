@@ -87,12 +87,12 @@ public class DemoApplication {
 	@ResponseBody
 	@PostMapping(value = "/generatagentauthirmark", consumes = MediaType.APPLICATION_XML_VALUE)//
 	public String  generateAgentAuthXMLWithIRMark(@RequestHeader HttpHeaders headers,
-										 	@RequestBody com.example.paycaptainirmarkcalculator.eps.GovTalkMessage xmldata) throws Exception {
+										 	@RequestBody com.example.paycaptainirmarkcalculator.agent_auth.GovTalkMessage xmldata) throws Exception {
 
 		String hmrcId = headers.get("hmrcId").get(0);
 		String isSandbox = headers.get("isSandbox").get(0);
 
-		JAXBContext jaxbContext = JAXBContext.newInstance(com.example.paycaptainirmarkcalculator.eps.GovTalkMessage.class);
+		JAXBContext jaxbContext = JAXBContext.newInstance(com.example.paycaptainirmarkcalculator.agent_auth.GovTalkMessage.class);
 		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		StringWriter sw = new StringWriter();
