@@ -4,5 +4,5 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class Add {
     @XmlElement
-    public com.example.paycaptainirmarkcalculator.agent_auth.PAYE PAYE;
+    public PAYE PAYE;
 }

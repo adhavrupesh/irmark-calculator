@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlElement;
 
 public class PAYE {
     @XmlElement
-    public com.example.paycaptainirmarkcalculator.agent_auth.TaxOffice TaxOffice;
+    public TaxOffice TaxOffice;
     @XmlElement
     public String AOreference;
     @XmlElement

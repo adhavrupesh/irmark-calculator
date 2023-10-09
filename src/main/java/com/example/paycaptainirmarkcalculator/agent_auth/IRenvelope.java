@@ -11,7 +11,7 @@ public class IRenvelope {
     public String xmlns;
 
     @XmlElement
-    public com.example.paycaptainirmarkcalculator.agent_auth.IRheader IRheader;
+    public IRheader IRheader;
     @XmlElement
-    public com.example.paycaptainirmarkcalculator.agent_auth.AgentRequest AgentRequest;
+    public AgentRequest AgentRequest;
 }

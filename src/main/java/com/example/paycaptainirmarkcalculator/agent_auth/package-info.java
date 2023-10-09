@@ -3,7 +3,7 @@
         elementFormDefault = XmlNsForm.QUALIFIED
         /*xmlns = {
                 @XmlNs(prefix = "", namespaceURI = "hhttp://www.govtalk.gov.uk/CM/envelope"),
-                @XmlNs(prefix = "", namespaceURI = "http://www.govtalk.gov.uk/taxation/PAYE/RTI/FullPaymentSubmission/20-21/1")
+                @XmlNs(prefix = "", namespaceURI = "http://www.govtalk.gov.uk/taxation/AgentAuthRequest/1")
         }*/
 )
 

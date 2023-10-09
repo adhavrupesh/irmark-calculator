@@ -8,9 +8,9 @@ public class GovTalkMessage {
     @XmlElement
     public String EnvelopeVersion;
     @XmlElement
-    public com.example.paycaptainirmarkcalculator.agent_auth.Header Header;
+    public Header Header;
     @XmlElement
     public com.example.paycaptainirmarkcalculator.fps.GovTalkDetails GovTalkDetails;
     @XmlElement
-    public com.example.paycaptainirmarkcalculator.agent_auth.Body Body;
+    public Body Body;
 }
