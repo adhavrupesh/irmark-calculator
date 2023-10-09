@@ -1,6 +1,7 @@
 package com.example.paycaptainirmarkcalculator.agent_auth;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlType;
 
 @XmlType(namespace="http://www.govtalk.gov.uk/taxation/AgentAuthRequest/1")
 public class IRenvelope {
