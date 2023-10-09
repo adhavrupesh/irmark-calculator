@@ -86,7 +86,7 @@ public class DemoApplication {
 
 	@ResponseBody
 	@PostMapping(value = "/generatagentauthirmark", consumes = MediaType.APPLICATION_XML_VALUE)//
-	public String  generateEPSXMLWithIRMark(@RequestHeader HttpHeaders headers,
+	public String  generateAgentAuthXMLWithIRMark(@RequestHeader HttpHeaders headers,
 										 	@RequestBody com.example.paycaptainirmarkcalculator.eps.GovTalkMessage xmldata) throws Exception {
 
 		String hmrcId = headers.get("hmrcId").get(0);
