@@ -12,5 +12,5 @@ public class GovTalkMessage {
     @XmlElement
     public com.example.paycaptainirmarkcalculator.fps.GovTalkDetails GovTalkDetails;
     @XmlElement
-    public com.example.paycaptainirmarkcalculator.AgentAuth.Body Body;
+    public com.example.paycaptainirmarkcalculator.agent_auth.Body Body;
 }
