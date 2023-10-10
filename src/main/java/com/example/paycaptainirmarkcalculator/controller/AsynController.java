@@ -141,7 +141,7 @@ public class AsynController{
         InputStream targetStream = new ByteArrayInputStream(xmlContent.getBytes());
         IRMarkCalculator mc = new IRMarkCalculator();
         String base64 = mc.createMark(targetStream);
-        System.out.println("fps output base64 : "+base64);
+        System.out.println("agentauth output base64 : "+base64);
 
         if(base64 != "" && xmlContent.contains("<IRmark Type=\"generic\"></IRmark>")){
             xmlContent = xmlContent.replace("<IRmark Type=\"generic\"></IRmark>", "<IRmark Type=\"generic\">"+base64+"</IRmark>");
