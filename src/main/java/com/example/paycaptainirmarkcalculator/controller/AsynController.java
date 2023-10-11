@@ -134,6 +134,9 @@ public class AsynController{
             xmlContent = xmlContent.replace("<IRenvelope>",
                     "<IRenvelope xmlns=\"http://www.govtalk.gov.uk/taxation/AgentAuthRequest/1\">");
         }
+        if(xmlContent.contains(" standalone=\"yes\"")){
+            xmlContent = xmlContent.replace(" standalone=\"yes\"", "");
+        }
         if(xmlContent.contains("\n")){
             xmlContent = xmlContent.replace("\n", "");
         }
