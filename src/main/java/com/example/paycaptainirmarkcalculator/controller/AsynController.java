@@ -127,8 +127,8 @@ public class AsynController{
         sleep(120);
         System.out.println("agentauth xmlContent started processing");
 
-        if(xmlContent.contains("<MessageDetailsClass>")) {
-            xmlContent = xmlContent.replace("<MessageDetailsClass>", "<Class>");
+        if(xmlContent.contains("MessageDetailsClass")) {
+            xmlContent = xmlContent.replace("MessageDetailsClass", "Class");
         }
         if(xmlContent.contains("<IRenvelope>")){
             xmlContent = xmlContent.replace("<IRenvelope>",
