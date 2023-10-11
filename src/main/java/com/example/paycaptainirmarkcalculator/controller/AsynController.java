@@ -122,7 +122,7 @@ public class AsynController{
 
 
      @Async
-    public void generateAgentAuthIRMark(String xmlContent, String hmrcId, String isSandbox) throws Exception {
+    public void generateAgentAuthIRMark(String xmlContent, String hmrcId, String accountId, String isSandbox) throws Exception {
 
         sleep(120);
         System.out.println("agentauth xmlContent started processing");
@@ -151,7 +151,7 @@ public class AsynController{
         }
         System.out.println("agentauth xmlContent processed");
 
-        String response = payCaptainRestClient.sendIRMarkToPayCaptain(xmlContent, hmrcId, isSandbox);
+        String response = payCaptainRestClient.sendIRMarkToPayCaptainAgentAuth(xmlContent, hmrcId, accountId, isSandbox, base64);
         System.out.println("agentauth response: "+response);
 
     }

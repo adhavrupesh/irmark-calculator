@@ -90,6 +90,7 @@ public class DemoApplication {
 										 	@RequestBody com.example.paycaptainirmarkcalculator.agent_auth.GovTalkMessage xmldata) throws Exception {
 
 		String hmrcId = headers.get("hmrcId").get(0);
+		String accountId = headers.get("isSandbox").get(0);
 		String isSandbox = headers.get("isSandbox").get(0);
 
 		JAXBContext jaxbContext = JAXBContext.newInstance(com.example.paycaptainirmarkcalculator.agent_auth.GovTalkMessage.class);
@@ -100,7 +101,7 @@ public class DemoApplication {
 
 		String xmlContent = sw.toString();
 
-		asynController.generateAgentAuthIRMark(xmlContent, hmrcId, isSandbox);;
+		asynController.generateAgentAuthIRMark(xmlContent, hmrcId, accountId, isSandbox);;
 
 		return "success";
 	}
