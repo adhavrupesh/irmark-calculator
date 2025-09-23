@@ -35,7 +35,10 @@ public class DemoApplication {
 	}
 
 	@ResponseBody
-	@PostMapping(value = "/generatefpsirmark", consumes = {"application/xml", "application/xml;charset=UTF-8"}, produces = MediaType.TEXT_PLAIN_VALUE)
+	@PostMapping(
+		value = "/generatefpsirmark", 
+		consumes = {"application/xml", "application/xml;charset=UTF-8"}, 
+		produces = MediaType.TEXT_PLAIN_VALUE)
 	public String  generateFPSXMLWithIRMark(@RequestHeader HttpHeaders headers,
 									  	 	@RequestBody GovTalkMessage xmldata) throws Exception {
 

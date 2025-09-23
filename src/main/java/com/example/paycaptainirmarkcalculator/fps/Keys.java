@@ -1,9 +1,22 @@
 package com.example.paycaptainirmarkcalculator.fps;
 
-import jakarta.xml.bind.annotation.XmlElement;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import java.util.List;
 
 public class Keys {
-    @XmlElement
-    public List<Key> Key;
+
+    @JacksonXmlProperty(localName = "Key")
+    @JacksonXmlElementWrapper(useWrapping = false)
+    private List<Key> key;
+
+    public Keys() {}
+
+    public List<Key> getKey() {
+        return key;
+    }
+
+    public void setKey(List<Key> key) {
+        this.key = key;
+    }
 }
