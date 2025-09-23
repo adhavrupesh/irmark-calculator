@@ -156,10 +156,10 @@
 		</dependency>
 
 		<!-- Spring Boot XML support added on 23 Sep 2025-->
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.dataformat</groupId>
 			<artifactId>jackson-dataformat-xml</artifactId>
-		</dependency> -->
+		</dependency>
 
 	</dependencies>
 
