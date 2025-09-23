@@ -2,7 +2,7 @@ package com.example.paycaptainirmarkcalculator.eps;
 
 import com.example.paycaptainirmarkcalculator.fps.FinalSubmission;
 
-import javax.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElement;
 
 public class EmployerPaymentSummary {
    @XmlElement

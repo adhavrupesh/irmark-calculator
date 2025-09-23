@@ -1,6 +1,6 @@
 package com.example.paycaptainirmarkcalculator.fps;
 
-import javax.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElement;
 import java.util.List;
 
 public class Keys {

@@ -1,6 +1,6 @@
 package com.example.paycaptainirmarkcalculator.eps;
 
-import javax.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElement;
 
 public class IRenvelope {
     @XmlElement
