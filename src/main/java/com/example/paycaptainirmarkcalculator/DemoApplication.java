@@ -35,7 +35,7 @@ public class DemoApplication {
 	}
 
 	@ResponseBody
-	@PostMapping(value = "/generatefpsirmark", consumes = MediaType.APPLICATION_XML_VALUE)//
+	@PostMapping(value = "/generatefpsirmark", consumes = {"application/xml", "application/xml;charset=UTF-8"})
 	public String  generateFPSXMLWithIRMark(@RequestHeader HttpHeaders headers,
 									  	 	@RequestBody GovTalkMessage xmldata) throws Exception {
 
@@ -63,7 +63,7 @@ public class DemoApplication {
 	}
 
 	@ResponseBody
-	@PostMapping(value = "/generateepsirmark", consumes = MediaType.APPLICATION_XML_VALUE)//
+	@PostMapping(value = "/generateepsirmark", consumes = {"application/xml", "application/xml;charset=UTF-8"})
 	public String  generateEPSXMLWithIRMark(@RequestHeader HttpHeaders headers,
 										 	@RequestBody com.example.paycaptainirmarkcalculator.eps.GovTalkMessage xmldata) throws Exception {
 
@@ -87,7 +87,7 @@ public class DemoApplication {
 
 
 	@ResponseBody
-	@PostMapping(value = "/generatagentauthirmark", consumes = MediaType.APPLICATION_XML_VALUE)//
+	@PostMapping(value = "/generatagentauthirmark", consumes = {"application/xml", "application/xml;charset=UTF-8"})
 	public String  generateAgentAuthXMLWithIRMark(@RequestHeader HttpHeaders headers,
 										 	@RequestBody com.example.paycaptainirmarkcalculator.agent_auth.GovTalkMessage xmldata) throws Exception {
 
