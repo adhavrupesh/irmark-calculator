@@ -1,6 +1,6 @@
 package com.example.paycaptainirmarkcalculator.agent_auth;
 
-import jakarta.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElement;
 
 public class TaxOffice {
     @XmlElement

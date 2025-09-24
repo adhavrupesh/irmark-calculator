@@ -1,7 +1,7 @@
 package com.example.paycaptainirmarkcalculator.eps;
 
-import jakarta.xml.bind.annotation.XmlAttribute;
-import jakarta.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
 public class Aid {
  @XmlAttribute(name = "Cur")

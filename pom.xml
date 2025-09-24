@@ -141,27 +141,6 @@
 			<version>2.7.5</version>
 		</dependency>
 
-		 <!-- JAXB API added on 23 Sep 2025-->
-		<dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>4.0.0</version> <!-- or 3.x depending on compatibility -->
-		</dependency>
-
-		<!-- JAXB Runtime (implementation) added on 23 Sep 2025-->
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>4.0.3</version>
-		</dependency>
-
-		
-		<!-- Spring Boot XML support added on 23 Sep 2025-->
-		<dependency>
-			<groupId>com.fasterxml.jackson.dataformat</groupId>
-			<artifactId>jackson-dataformat-xml</artifactId>
-		</dependency>
-
 	</dependencies>
 
 	<build>

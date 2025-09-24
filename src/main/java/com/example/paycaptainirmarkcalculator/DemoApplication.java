@@ -3,8 +3,8 @@ package com.example.paycaptainirmarkcalculator;
 import com.example.paycaptainirmarkcalculator.controller.AsynController;
 import com.example.paycaptainirmarkcalculator.fps.GovTalkMessage;
 
-import jakarta.xml.bind.JAXBContext;
-import jakarta.xml.bind.Marshaller;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
